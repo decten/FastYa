@@ -1,6 +1,7 @@
 package com.developer.maker.dmaker.entity;
 
 import com.developer.maker.dmaker.type.DeveloperLevel;
+import com.developer.maker.dmaker.type.DeveloperSkillType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -27,4 +28,7 @@ public class Developer {
 
     @Enumerated(EnumType.STRING)
     private DeveloperLevel developerLevel;
+
+    @Enumerated(EnumType.STRING)
+    private DeveloperSkillType developerSkillType;
 }
