@@ -1,5 +1,6 @@
 package com.developer.maker.dmaker.entity;
 
+import com.developer.maker.dmaker.type.DeveloperLevel;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
