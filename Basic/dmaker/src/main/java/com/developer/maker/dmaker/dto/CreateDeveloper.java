@@ -10,6 +10,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.antlr.v4.runtime.misc.NotNull;
 
 public class CreateDeveloper {
@@ -18,6 +19,7 @@ public class CreateDeveloper {
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
+    @ToString
     public static class Request{
         @NotNull
         private DeveloperLevel developerLevel;
