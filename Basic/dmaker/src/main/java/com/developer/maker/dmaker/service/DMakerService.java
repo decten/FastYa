@@ -1,5 +1,6 @@
 package com.developer.maker.dmaker.service;
 
+import static exception.DMakerErrorCode.DUPLICATED_MEMBER_ID;
 import static exception.DMakerErrorCode.LEVEL_EXPERIENCE_YEARS_NOT_MATCHED;
 
 import com.developer.maker.dmaker.dto.CreateDeveloper;
@@ -52,6 +53,11 @@ public class DMakerService {
             && experienceYears > 4){
             throw new DMakerException(LEVEL_EXPERIENCE_YEARS_NOT_MATCHED);
         }
+
+        developerRepository.findByMemberId(request.getMemberId())
+            .ifPresent(developer->{
+                throw new DMakerException(DUPLICATED_MEMBER_ID);
+            });
 
     }
 }
