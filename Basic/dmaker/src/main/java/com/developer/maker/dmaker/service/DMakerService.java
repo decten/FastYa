@@ -38,9 +38,20 @@ public class DMakerService {
 
     private void validateCreateDeveloperRequest(Request request) {
         //비즈니스 밸리데이션 수행
-        if(request.getDeveloperLevel() == DeveloperLevel.SENIOR
-        && request.getExperienceYears() < 10){
+        DeveloperLevel developerLevel = request.getDeveloperLevel();
+        Integer experienceYears = request.getExperienceYears();
+        if(developerLevel == DeveloperLevel.SENIOR
+            && experienceYears < 10){
             throw new DMakerException(LEVEL_EXPERIENCE_YEARS_NOT_MATCHED);
         }
+        if(developerLevel == DeveloperLevel.JUNGNIOR
+            && (experienceYears < 4 || experienceYears > 10)){
+            throw new DMakerException(LEVEL_EXPERIENCE_YEARS_NOT_MATCHED);
+        }
+        if(developerLevel == DeveloperLevel.JUNIOR
+            && experienceYears > 4){
+            throw new DMakerException(LEVEL_EXPERIENCE_YEARS_NOT_MATCHED);
+        }
+
     }
 }
