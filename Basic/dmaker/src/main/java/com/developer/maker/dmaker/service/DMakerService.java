@@ -5,6 +5,7 @@ import static exception.DMakerErrorCode.LEVEL_EXPERIENCE_YEARS_NOT_MATCHED;
 
 import com.developer.maker.dmaker.dto.CreateDeveloper;
 import com.developer.maker.dmaker.dto.CreateDeveloper.Request;
+import com.developer.maker.dmaker.dto.DeveloperDto;
 import com.developer.maker.dmaker.entity.Developer;
 import com.developer.maker.dmaker.repository.DeveloperRepository;
 import com.developer.maker.dmaker.type.DeveloperLevel;
@@ -12,6 +13,9 @@ import exception.DMakerException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -58,5 +62,11 @@ public class DMakerService {
                 throw new DMakerException(DUPLICATED_MEMBER_ID);
             });
 
+    }
+
+    public List<DeveloperDto> getAllDevelopers() {
+        return developerRepository.findAll()
+                .stream().map(DeveloperDto::fromEntity)
+                .collect(Collectors.toList());
     }
 }

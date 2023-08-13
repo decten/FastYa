@@ -1,10 +1,10 @@
 package com.developer.maker.dmaker.controller;
 
 import com.developer.maker.dmaker.dto.CreateDeveloper;
+import com.developer.maker.dmaker.dto.DeveloperDto;
 import com.developer.maker.dmaker.service.DMakerService;
 import jakarta.validation.Valid;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,10 +21,10 @@ public class DMakerController {
 
     //GET /developers 요청 처리
     @GetMapping("/developers")
-    public List<String> getAllDevelopers(){
+    public List<DeveloperDto> getAllDevelopers(){
         log.info("GET /developers HTTP/1.1");
 
-        return Arrays.asList("snow", "Elsa", "Anna");
+        return dMakerService.getAllDevelopers();
     }
 
     @PostMapping("/create-developers")
