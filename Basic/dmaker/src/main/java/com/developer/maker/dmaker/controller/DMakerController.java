@@ -33,8 +33,6 @@ public class DMakerController {
     ){
         log.info("request : {}", request);
 
-        dMakerService.createDeveloper(request);
-
         return dMakerService.createDeveloper(request);
     }
 
