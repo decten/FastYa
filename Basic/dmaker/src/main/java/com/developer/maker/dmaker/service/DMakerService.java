@@ -8,8 +8,11 @@ import com.developer.maker.dmaker.dto.CreateDeveloper.Request;
 import com.developer.maker.dmaker.entity.Developer;
 import com.developer.maker.dmaker.repository.DeveloperRepository;
 import com.developer.maker.dmaker.type.DeveloperLevel;
+import com.developer.maker.dmaker.type.DeveloperSkillType;
+import exception.DMakerErrorCode;
 import exception.DMakerException;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,20 +22,19 @@ public class DMakerService {
     private final DeveloperRepository developerRepository;
 
     @Transactional
-    public CreateDeveloper.Response createDeveloper(Request request){
+    public void createDeveloper(CreateDeveloper.Request request){
         validateCreateDeveloperRequest(request);
 
         //비즈니스 로직 수행
         Developer developer = Developer.builder()
-            .developerLevel(request.getDeveloperLevel())
-            .developerSkillType(request.getDeveloperSkillType())
-            .experienceYears(request.getExperienceYears())
-            .name(request.getName())
-            .age(request.getAge())
+            .developerLevel(DeveloperLevel.JUNIOR)
+            .developerSkillType(DeveloperSkillType.BACK_END)
+            .experienceYears(2)
+            .name("Barbie")
+            .age(27)
             .build();
 
         developerRepository.save(developer);
-        return CreateDeveloper.Response.fromEntity(developer);
     }
 
     private void validateCreateDeveloperRequest(Request request) {
