@@ -1,6 +1,7 @@
 package com.developer.maker.dmaker.controller;
 
 import com.developer.maker.dmaker.dto.CreateDeveloper;
+import com.developer.maker.dmaker.dto.DeveloperDetailDto;
 import com.developer.maker.dmaker.dto.DeveloperDto;
 import com.developer.maker.dmaker.service.DMakerService;
 import jakarta.validation.Valid;
@@ -8,10 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -25,6 +23,15 @@ public class DMakerController {
         log.info("GET /developers HTTP/1.1");
 
         return dMakerService.getAllDevelopers();
+    }
+
+    @GetMapping("/developers/{memberId}")
+    public DeveloperDetailDto getDeveloperDetail(
+            @PathVariable String memberId
+    ){
+        log.info("GET /developers HTTP/1.1");
+
+        return dMakerService.getDeveloperDetail(memberId);
     }
 
     @PostMapping("/create-developers")
