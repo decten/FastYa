@@ -39,7 +39,7 @@ public class Developer {
     private DeveloperSkillType developerSkillType;
 
     private Integer experienceYears;
-    private String memberID;
+    private String memberId;
     private String name;
     private Integer age;
 
