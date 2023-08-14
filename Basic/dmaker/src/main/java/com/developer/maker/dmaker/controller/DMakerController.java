@@ -3,6 +3,7 @@ package com.developer.maker.dmaker.controller;
 import com.developer.maker.dmaker.dto.CreateDeveloper;
 import com.developer.maker.dmaker.dto.DeveloperDetailDto;
 import com.developer.maker.dmaker.dto.DeveloperDto;
+import com.developer.maker.dmaker.dto.EditDeveloper;
 import com.developer.maker.dmaker.service.DMakerService;
 import jakarta.validation.Valid;
 import java.util.Arrays;
@@ -41,6 +42,15 @@ public class DMakerController {
         log.info("request : {}", request);
 
         return dMakerService.createDeveloper(request);
+    }
+    @PutMapping("/developer/{memberId}")
+    public DeveloperDetailDto editDeveloper(
+        @PathVariable String memberId,
+        @Valid @RequestBody EditDeveloper.Request request
+    ){
+        log.info("GET /developers HTTP/1.1");
+
+        return dMakerService.editDeveloper(memberId, request);
     }
 
 }
