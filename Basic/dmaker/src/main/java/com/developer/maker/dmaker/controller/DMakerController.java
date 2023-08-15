@@ -12,6 +12,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -62,6 +63,7 @@ public class DMakerController {
         return dMakerService.deleteDeveloper(memberId);
     }
 
+    @ResponseStatus(value = HttpStatus.CONFLICT)
     @ExceptionHandler(DMakerException.class)
     public DMakerErrorResponse handleException(DMakerException e,
         HttpServletRequest request){
