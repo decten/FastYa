@@ -1,10 +1,13 @@
 package com.developer.maker.dmaker.controller;
 
 import com.developer.maker.dmaker.dto.CreateDeveloper;
+import com.developer.maker.dmaker.dto.DMakerErrorResponse;
 import com.developer.maker.dmaker.dto.DeveloperDetailDto;
 import com.developer.maker.dmaker.dto.DeveloperDto;
 import com.developer.maker.dmaker.dto.EditDeveloper;
 import com.developer.maker.dmaker.service.DMakerService;
+import exception.DMakerException;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -57,5 +60,17 @@ public class DMakerController {
         @PathVariable String memberId
     ){
         return dMakerService.deleteDeveloper(memberId);
+    }
+
+    @ExceptionHandler(DMakerException.class)
+    public DMakerErrorResponse handleException(DMakerException e,
+        HttpServletRequest request){
+        log.error("errorCode: {}, url: {}, message: {}",
+            e.getDMakerErrorCode(), request.getRequestURI(), e.getDetailMessage());
+
+        return DMakerErrorResponse.builder()
+            .errorCode(e.getDMakerErrorCode())
+            .errorMessage(e.getDetailMessage())
+            .build();
     }
 }
