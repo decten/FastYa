@@ -6,7 +6,6 @@ import com.developer.maker.dmaker.dto.DeveloperDto;
 import com.developer.maker.dmaker.dto.EditDeveloper;
 import com.developer.maker.dmaker.service.DMakerService;
 import jakarta.validation.Valid;
-import java.util.Arrays;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +22,7 @@ public class DMakerController {
     public List<DeveloperDto> getAllDevelopers(){
         log.info("GET /developers HTTP/1.1");
 
-        return dMakerService.getAllDevelopers();
+        return dMakerService.getAllEmployedDevelopers();
     }
 
     @GetMapping("/developer/{memberId}")
@@ -53,4 +52,10 @@ public class DMakerController {
         return dMakerService.editDeveloper(memberId, request);
     }
 
+    @DeleteMapping("/developer/{memberId}")
+    public DeveloperDetailDto deleteDeveloper(
+        @PathVariable String memberId
+    ){
+        return dMakerService.deleteDeveloper(memberId);
+    }
 }
