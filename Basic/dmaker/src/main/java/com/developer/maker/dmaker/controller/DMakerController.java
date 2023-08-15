@@ -6,7 +6,7 @@ import com.developer.maker.dmaker.dto.DeveloperDetailDto;
 import com.developer.maker.dmaker.dto.DeveloperDto;
 import com.developer.maker.dmaker.dto.EditDeveloper;
 import com.developer.maker.dmaker.service.DMakerService;
-import exception.DMakerException;
+import com.developer.maker.dmaker.exception.DMakerException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import java.util.List;

@@ -11,7 +11,7 @@ import com.developer.maker.dmaker.entity.RetiredDeveloper;
 import com.developer.maker.dmaker.repository.DeveloperRepository;
 import com.developer.maker.dmaker.repository.RetiredDeveloperRepository;
 import com.developer.maker.dmaker.type.DeveloperLevel;
-import exception.DMakerException;
+import com.developer.maker.dmaker.exception.DMakerException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static exception.DMakerErrorCode.*;
+import static com.developer.maker.dmaker.exception.DMakerErrorCode.*;
 
 @Service
 @RequiredArgsConstructor

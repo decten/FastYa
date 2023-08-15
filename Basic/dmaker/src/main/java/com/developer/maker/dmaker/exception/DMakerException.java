@@ -1,4 +1,4 @@
-package exception;
+package com.developer.maker.dmaker.exception;
 
 import lombok.Getter;
 
