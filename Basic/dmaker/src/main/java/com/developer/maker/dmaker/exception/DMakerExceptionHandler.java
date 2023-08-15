@@ -1,5 +1,6 @@
 package com.developer.maker.dmaker.exception;
 
+import static com.developer.maker.dmaker.exception.DMakerErrorCode.INTERNAL_SERVER_ERROR;
 import static com.developer.maker.dmaker.exception.DMakerErrorCode.INVALID_REQUEST;
 
 import com.developer.maker.dmaker.dto.DMakerErrorResponse;
@@ -44,5 +45,15 @@ public class DMakerExceptionHandler {
             .build();
     }
 
+    @ExceptionHandler(Exception.class)
+    public DMakerErrorResponse handleException(
+        Exception e, HttpServletRequest request
+    ){
+        log.error("url: {}, message: {}", request.getRequestURI(), e.getMessage());
 
+        return DMakerErrorResponse.builder()
+            .errorCode(INTERNAL_SERVER_ERROR)
+            .errorMessage(INTERNAL_SERVER_ERROR.getMessage())
+            .build();
+    }
 }
