@@ -1,6 +1,6 @@
 package com.developer.maker.dmaker.controller;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -12,7 +12,6 @@ import com.developer.maker.dmaker.type.DeveloperLevel;
 import com.developer.maker.dmaker.type.DeveloperSkillType;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
