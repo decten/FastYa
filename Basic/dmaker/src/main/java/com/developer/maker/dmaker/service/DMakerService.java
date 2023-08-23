@@ -12,7 +12,7 @@ import com.developer.maker.dmaker.repository.DeveloperRepository;
 import com.developer.maker.dmaker.repository.RetiredDeveloperRepository;
 import com.developer.maker.dmaker.type.DeveloperLevel;
 import com.developer.maker.dmaker.exception.DMakerException;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -60,12 +60,14 @@ public class DMakerService {
 
     }
 
+    @Transactional(readOnly = true)
     public List<DeveloperDto> getAllEmployedDevelopers() {
         return developerRepository.findDeveloperByStatusCodeEquals(StatusCode.EMPLOYED)
                 .stream().map(DeveloperDto::fromEntity)
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public DeveloperDetailDto getDeveloperDetail(String memberId) {
         return developerRepository.findByMemberId(memberId)
                 .map(DeveloperDetailDto::fromEntity)
