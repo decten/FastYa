@@ -3,6 +3,8 @@ package com.developer.maker.dmaker.service;
 import static com.developer.maker.dmaker.code.StatusCode.EMPLOYED;
 import static com.developer.maker.dmaker.constant.DMakerConstant.*;
 import static com.developer.maker.dmaker.exception.DMakerErrorCode.*;
+import static com.developer.maker.dmaker.type.DeveloperLevel.JUNGNIOR;
+import static com.developer.maker.dmaker.type.DeveloperLevel.JUNIOR;
 import static com.developer.maker.dmaker.type.DeveloperLevel.SENIOR;
 import static com.developer.maker.dmaker.type.DeveloperSkillType.FRONT_END;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -101,16 +103,34 @@ class DMakerServiceTest {
     }
 
     @Test
-    void createDeveloperTest_fail_low_senior() {
+    void createDeveloperTest_fail_unmatched_level() {
         //given
         //when
         //then
         DMakerException dMakerException = assertThrows(DMakerException.class,
+            () -> dMakerService.createDeveloper(getCreateRequest(JUNIOR, FRONT_END,
+                MAX_JUNIOR_EXPERIENCE_YEARS+1))
+        );
+        assertEquals(LEVEL_EXPERIENCE_YEARS_NOT_MATCHED,
+            dMakerException.getDMakerErrorCode()
+        );
+
+        dMakerException = assertThrows(DMakerException.class,
+            () -> dMakerService.createDeveloper(getCreateRequest(JUNGNIOR, FRONT_END,
+                MIN_SENIOR_EXPERIENCE_YEARS+1))
+        );
+        assertEquals(LEVEL_EXPERIENCE_YEARS_NOT_MATCHED,
+            dMakerException.getDMakerErrorCode()
+        );
+
+        dMakerException = assertThrows(DMakerException.class,
             () -> dMakerService.createDeveloper(getCreateRequest(SENIOR, FRONT_END,
                 MIN_SENIOR_EXPERIENCE_YEARS-1))
         );
+        assertEquals(LEVEL_EXPERIENCE_YEARS_NOT_MATCHED,
+            dMakerException.getDMakerErrorCode()
+        );
 
-        assertEquals(LEVEL_EXPERIENCE_YEARS_NOT_MATCHED, dMakerException.getDMakerErrorCode());
     }
 
     @Test
