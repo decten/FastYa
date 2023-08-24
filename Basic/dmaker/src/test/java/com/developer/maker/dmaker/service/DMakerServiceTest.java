@@ -16,7 +16,6 @@ import com.developer.maker.dmaker.entity.Developer;
 import com.developer.maker.dmaker.exception.DMakerErrorCode;
 import com.developer.maker.dmaker.exception.DMakerException;
 import com.developer.maker.dmaker.repository.DeveloperRepository;
-import com.developer.maker.dmaker.repository.RetiredDeveloperRepository;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,10 +29,6 @@ class DMakerServiceTest {
 
     @Mock
     private DeveloperRepository developerRepository;
-
-    @Mock
-    private RetiredDeveloperRepository retiredDeveloperRepository;
-
     @InjectMocks
     private DMakerService dMakerService;
 
@@ -97,9 +92,6 @@ class DMakerServiceTest {
         //given
         given(developerRepository.findByMemberId(anyString()))
             .willReturn(Optional.of(defaultDeveloper));
-
-        ArgumentCaptor<Developer> captor =
-            ArgumentCaptor.forClass(Developer.class);
 
         //when
         //then
