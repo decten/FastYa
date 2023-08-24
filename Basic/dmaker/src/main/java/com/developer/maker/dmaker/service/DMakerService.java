@@ -12,7 +12,6 @@ import com.developer.maker.dmaker.repository.DeveloperRepository;
 import com.developer.maker.dmaker.repository.RetiredDeveloperRepository;
 import com.developer.maker.dmaker.type.DeveloperLevel;
 import com.developer.maker.dmaker.exception.DMakerException;
-import java.util.Optional;
 import lombok.NonNull;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -89,15 +88,22 @@ public class DMakerService {
 
     @Transactional     //DB에도 반영
     public DeveloperDetailDto editDeveloper(String memberId, EditDeveloper.Request request){
-        validateDeveloperLevel(request.getDeveloperLevel(),request.getExperienceYears());
+        validateDeveloperLevel(request.getDeveloperLevel(), request.getExperienceYears());
 
-        Developer developer = getDeveloperByMemberId(memberId);
+        return DeveloperDetailDto.fromEntity(
+                getUpdatedDeveloperFromRequest(
+                    request, getDeveloperByMemberId(memberId)
+            )
+        );
 
+    }
+
+    private Developer getUpdatedDeveloperFromRequest(EditDeveloper.Request request, Developer developer) {
         developer.setDeveloperLevel(request.getDeveloperLevel());
         developer.setDeveloperSkillType(request.getDeveloperSkillType());
         developer.setExperienceYears(request.getExperienceYears());
 
-        return DeveloperDetailDto.fromEntity(developer);
+        return developer;
     }
 
     private static void validateDeveloperLevel(DeveloperLevel developerLevel,
