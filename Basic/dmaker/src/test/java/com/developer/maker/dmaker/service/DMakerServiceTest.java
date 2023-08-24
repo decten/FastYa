@@ -1,6 +1,7 @@
 package com.developer.maker.dmaker.service;
 
 import static com.developer.maker.dmaker.code.StatusCode.EMPLOYED;
+import static com.developer.maker.dmaker.constant.DMakerConstant.*;
 import static com.developer.maker.dmaker.exception.DMakerErrorCode.*;
 import static com.developer.maker.dmaker.type.DeveloperLevel.SENIOR;
 import static com.developer.maker.dmaker.type.DeveloperSkillType.FRONT_END;
@@ -87,7 +88,8 @@ class DMakerServiceTest {
             ArgumentCaptor.forClass(Developer.class);
 
         //when
-        dMakerService.createDeveloper(getCreateRequest(SENIOR, FRONT_END,12));
+        dMakerService.createDeveloper(getCreateRequest(SENIOR, FRONT_END,
+            MIN_SENIOR_EXPERIENCE_YEARS));
 
         //then
         verify(developerRepository, times(1))
@@ -104,7 +106,8 @@ class DMakerServiceTest {
         //when
         //then
         DMakerException dMakerException = assertThrows(DMakerException.class,
-            () -> dMakerService.createDeveloper(getCreateRequest(SENIOR, FRONT_END,8))
+            () -> dMakerService.createDeveloper(getCreateRequest(SENIOR, FRONT_END,
+                MIN_SENIOR_EXPERIENCE_YEARS-1))
         );
 
         assertEquals(LEVEL_EXPERIENCE_YEARS_NOT_MATCHED, dMakerException.getDMakerErrorCode());
@@ -120,7 +123,8 @@ class DMakerServiceTest {
         //then
         /* 실행과 검증이 동시에 이뤄져서 when&then */
         DMakerException dMakerException = assertThrows(DMakerException.class,
-            () -> dMakerService.createDeveloper(getCreateRequest(SENIOR, FRONT_END,12))
+            () -> dMakerService.createDeveloper(getCreateRequest(SENIOR, FRONT_END,
+                MIN_SENIOR_EXPERIENCE_YEARS))
         );
         assertEquals(DUPLICATED_MEMBER_ID, dMakerException.getDMakerErrorCode());
     }
