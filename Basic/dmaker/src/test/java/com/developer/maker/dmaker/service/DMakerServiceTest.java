@@ -5,6 +5,7 @@ import static com.developer.maker.dmaker.type.DeveloperLevel.SENIOR;
 import static com.developer.maker.dmaker.type.DeveloperSkillType.FRONT_END;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
@@ -71,7 +72,8 @@ class DMakerServiceTest {
         //given
         given(developerRepository.findByMemberId(anyString()))
             .willReturn(Optional.empty()); //아무것도 return이 안 돼야 잘 만들어진 것
-
+        given(developerRepository.save(any()))
+            .willReturn(defaultDeveloper);
         ArgumentCaptor<Developer> captor =
             ArgumentCaptor.forClass(Developer.class);
 
