@@ -77,7 +77,7 @@ public class DMakerService {
     }
     @Transactional     //DB에도 반영
     public DeveloperDetailDto editDeveloper(String memberId, EditDeveloper.Request request){
-        validateEditDeveloperRequest(request,memberId);
+        validateDeveloperLevel(request.getDeveloperLevel(),request.getExperienceYears());
 
         Developer developer = developerRepository.findByMemberId(memberId).orElseThrow(
             ()->new DMakerException(NO_DEVELOPER)
@@ -88,14 +88,6 @@ public class DMakerService {
         developer.setExperienceYears(request.getExperienceYears());
 
         return DeveloperDetailDto.fromEntity(developer);
-    }
-
-    private void validateEditDeveloperRequest(EditDeveloper.Request request,
-        String memberId) {
-        validateDeveloperLevel(
-            request.getDeveloperLevel(),
-            request.getExperienceYears()
-        );
     }
 
     private static void validateDeveloperLevel(DeveloperLevel developerLevel,
