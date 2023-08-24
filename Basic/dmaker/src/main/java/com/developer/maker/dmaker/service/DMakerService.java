@@ -29,11 +29,18 @@ public class DMakerService {
     private final RetiredDeveloperRepository retiredDeveloperRepository;
 
     @Transactional
-    public CreateDeveloper.Response createDeveloper(Request request){
+    public CreateDeveloper.Response createDeveloper(Request request) {
         validateCreateDeveloperRequest(request);
 
         //비즈니스 로직 수행
-        Developer developer = Developer.builder()
+        return CreateDeveloper.Response.fromEntity(
+            developerRepository.save(createDeveloperFromRequest(request))
+        );
+    }
+
+    private Developer createDeveloperFromRequest(Request request) {
+
+        return Developer.builder()
             .developerLevel(request.getDeveloperLevel())
             .developerSkillType(request.getDeveloperSkillType())
             .experienceYears(request.getExperienceYears())
@@ -43,12 +50,12 @@ public class DMakerService {
             .age(request.getAge())
             .build();
 
-        developerRepository.save(developer);
-        return CreateDeveloper.Response.fromEntity(developer);
     }
 
     private void validateCreateDeveloperRequest(@NonNull Request request) {
-        if(request==null) throw new DMakerException(INVALID_REQUEST);
+        if (request == null) {
+            throw new DMakerException(INVALID_REQUEST);
+        }
         //비즈니스 밸리데이션 수행
         validateDeveloperLevel(
             request.getDeveloperLevel(),
