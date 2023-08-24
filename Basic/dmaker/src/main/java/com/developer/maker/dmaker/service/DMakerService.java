@@ -12,6 +12,7 @@ import com.developer.maker.dmaker.repository.DeveloperRepository;
 import com.developer.maker.dmaker.repository.RetiredDeveloperRepository;
 import com.developer.maker.dmaker.type.DeveloperLevel;
 import com.developer.maker.dmaker.exception.DMakerException;
+import lombok.NonNull;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -46,7 +47,8 @@ public class DMakerService {
         return CreateDeveloper.Response.fromEntity(developer);
     }
 
-    private void validateCreateDeveloperRequest(Request request) {
+    private void validateCreateDeveloperRequest(@NonNull Request request) {
+        if(request==null) throw new DMakerException(INVALID_REQUEST);
         //비즈니스 밸리데이션 수행
         validateDeveloperLevel(
             request.getDeveloperLevel(),
