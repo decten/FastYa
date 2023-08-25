@@ -59,9 +59,8 @@ public class DMakerService {
             throw new DMakerException(INVALID_REQUEST);
         }
         //비즈니스 밸리데이션 수행
-        validateDeveloperLevel(
-            request.getDeveloperLevel(),
-            request.getExperienceYears()
+        request.getDeveloperLevel().validateExperienceYears(
+                request.getExperienceYears()
         );
 
         developerRepository.findByMemberId(request.getMemberId())
@@ -90,7 +89,10 @@ public class DMakerService {
 
     @Transactional     //DB에도 반영
     public DeveloperDetailDto editDeveloper(String memberId, EditDeveloper.Request request){
-        validateDeveloperLevel(request.getDeveloperLevel(), request.getExperienceYears());
+
+        request.getDeveloperLevel().validateExperienceYears(
+                request.getExperienceYears()
+        );
 
         return DeveloperDetailDto.fromEntity(
                 getUpdatedDeveloperFromRequest(
@@ -110,11 +112,7 @@ public class DMakerService {
 
     private static void validateDeveloperLevel(DeveloperLevel developerLevel,
         Integer experienceYears) {
-
-        if (experienceYears < developerLevel.getMinExperienceYears() ||
-            experienceYears > developerLevel.getMaxExperienceYears()) {
-            throw new DMakerException(LEVEL_EXPERIENCE_YEARS_NOT_MATCHED);
-        }
+        developerLevel.validateExperienceYears(experienceYears);
     }
     @Transactional
     public DeveloperDetailDto deleteDeveloper(String memberId) {
