@@ -108,10 +108,6 @@ public class DMakerService {
         return developer;
     }
 
-    private static void validateDeveloperLevel(DeveloperLevel developerLevel,
-        Integer experienceYears) {
-        developerLevel.validateExperienceYears(experienceYears);
-    }
     @Transactional
     public DeveloperDetailDto deleteDeveloper(String memberId) {
         // 1. EMPLOYED -> RETIRED
