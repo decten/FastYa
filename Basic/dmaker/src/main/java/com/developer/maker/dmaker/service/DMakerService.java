@@ -20,9 +20,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.developer.maker.dmaker.constant.DMakerConstant.MAX_JUNIOR_EXPERIENCE_YEARS;
-import static com.developer.maker.dmaker.constant.DMakerConstant.MIN_SENIOR_EXPERIENCE_YEARS;
-import static com.developer.maker.dmaker.exception.DMakerErrorCode.*;
+import static com.developer.maker.dmaker.code.DMakerErrorCode.*;
 
 @Service
 @RequiredArgsConstructor

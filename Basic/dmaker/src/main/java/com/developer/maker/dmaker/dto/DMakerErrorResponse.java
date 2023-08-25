@@ -1,6 +1,6 @@
 package com.developer.maker.dmaker.dto;
 
-import com.developer.maker.dmaker.exception.DMakerErrorCode;
+import com.developer.maker.dmaker.code.DMakerErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

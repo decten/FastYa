@@ -1,7 +1,7 @@
 package com.developer.maker.dmaker.type;
 
 import static com.developer.maker.dmaker.constant.DMakerConstant.*;
-import static com.developer.maker.dmaker.exception.DMakerErrorCode.LEVEL_EXPERIENCE_YEARS_NOT_MATCHED;
+import static com.developer.maker.dmaker.code.DMakerErrorCode.LEVEL_EXPERIENCE_YEARS_NOT_MATCHED;
 
 import com.developer.maker.dmaker.exception.DMakerException;
 import java.util.function.Function;

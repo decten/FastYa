@@ -1,7 +1,7 @@
 package com.developer.maker.dmaker.exception;
 
-import static com.developer.maker.dmaker.exception.DMakerErrorCode.INTERNAL_SERVER_ERROR;
-import static com.developer.maker.dmaker.exception.DMakerErrorCode.INVALID_REQUEST;
+import static com.developer.maker.dmaker.code.DMakerErrorCode.INTERNAL_SERVER_ERROR;
+import static com.developer.maker.dmaker.code.DMakerErrorCode.INVALID_REQUEST;
 
 import com.developer.maker.dmaker.dto.DMakerErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;

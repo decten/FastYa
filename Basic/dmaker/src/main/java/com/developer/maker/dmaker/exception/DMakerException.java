@@ -1,5 +1,6 @@
 package com.developer.maker.dmaker.exception;
 
+import com.developer.maker.dmaker.code.DMakerErrorCode;
 import lombok.Getter;
 
 @Getter
