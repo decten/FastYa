@@ -99,7 +99,7 @@ class DMakerServiceTest {
         Developer savedDeveloper = captor.getValue();
         assertEquals(SENIOR, savedDeveloper.getDeveloperLevel());
         assertEquals(FRONT_END, savedDeveloper.getDeveloperSkillType());
-        assertEquals(12, savedDeveloper.getExperienceYears());
+        assertEquals(10, savedDeveloper.getExperienceYears());
     }
 
     @Test
